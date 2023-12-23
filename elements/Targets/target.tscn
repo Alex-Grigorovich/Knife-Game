@@ -16,3 +16,6 @@ texture = ExtResource("1_ax715")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_72yih")
+
+[node name="ItemsContainer" type="Node2D" parent="."]
+show_behind_parent = true
