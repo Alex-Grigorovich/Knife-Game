@@ -1,20 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkjspafqt123g"]
+[gd_scene load_steps=5 format=3 uid="uid://dkjspafqt123g"]
 
+[ext_resource type="PackedScene" uid="uid://ck6k3ajbm322f" path="res://elements/ui/hud/hud.tscn" id="1_fh6v0"]
 [ext_resource type="PackedScene" uid="uid://dqf5kbhfs0wci" path="res://elements/knife_shooter.tscn" id="1_wnnne"]
 [ext_resource type="PackedScene" uid="uid://dkr1glujhk86t" path="res://elements/Targets/target.tscn" id="2_2gxjx"]
 [ext_resource type="AudioStream" uid="uid://c741awbqkrbyr" path="res://Sounds/8-Bit-Misfits-You-Spin-Me-Round-_Like-a-Record_.wav" id="3_8mpqq"]
 
 [node name="Game" type="Node2D"]
 
+[node name="HUD" parent="." instance=ExtResource("1_fh6v0")]
+layer = 55
+
 [node name="KnifeShooter" parent="." instance=ExtResource("1_wnnne")]
-position = Vector2(-5, 372)
+position = Vector2(360, 901)
 
 [node name="Target" parent="." instance=ExtResource("2_2gxjx")]
-position = Vector2(-4, -218)
+position = Vector2(360, 410)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 529)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(360, 529)
 stream = ExtResource("3_8mpqq")
 volume_db = -10.306
 autoplay = true
