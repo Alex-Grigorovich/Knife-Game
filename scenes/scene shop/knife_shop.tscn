@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfu55ubvgx8s4"]
+[gd_scene load_steps=6 format=3 uid="uid://dfu55ubvgx8s4"]
 
-[ext_resource type="PackedScene" uid="uid://ck6k3ajbm322f" path="res://elements/ui/hud/hud.tscn" id="1_w7cw2"]
 [ext_resource type="StyleBox" uid="uid://ccptx0xmtwiqf" path="res://styles/green_line.stylebox" id="2_njmjp"]
 [ext_resource type="Theme" uid="uid://coddn0pcj11gc" path="res://styles/main.themes.tres" id="3_ketkq"]
 [ext_resource type="PackedScene" uid="uid://rjvcje2yfpbl" path="res://scenes/scene shop/shop_item/shop_item.tscn" id="4_3lnuv"]
@@ -14,8 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="HUD" parent="." instance=ExtResource("1_w7cw2")]
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
