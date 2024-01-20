@@ -45,8 +45,10 @@ func  handle_collison(collision: KinematicCollision2D):
 	if collider is Target:
 		add_knife_to_target(collider)
 		change_state(State.IDLE)
+		Globals.add_point()
 	else:
 		throw_away(collision.get_normal())
+		Events.game_over.emit()
 		
 func add_knife_to_target(target: Target):
 	get_parent().remove_child(self)

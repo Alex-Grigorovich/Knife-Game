@@ -51,11 +51,10 @@ flat = true
 
 [node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_vfe1n")
-text = "100"
+text = "0"
 
 [node name="StageCounter" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

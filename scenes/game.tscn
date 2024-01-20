@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkjspafqt123g"]
+[gd_scene load_steps=6 format=3 uid="uid://dkjspafqt123g"]
 
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_g5udd"]
 [ext_resource type="PackedScene" uid="uid://dqf5kbhfs0wci" path="res://elements/knife_shooter.tscn" id="1_wnnne"]
 [ext_resource type="PackedScene" uid="uid://dkr1glujhk86t" path="res://elements/Targets/target.tscn" id="2_2gxjx"]
 [ext_resource type="AudioStream" uid="uid://c741awbqkrbyr" path="res://Sounds/8-Bit-Misfits-You-Spin-Me-Round-_Like-a-Record_.wav" id="3_8mpqq"]
 [ext_resource type="PackedScene" uid="uid://og4uuk482vbv" path="res://elements/ui/restart_overlay/restart_overlay.tscn" id="5_djhnh"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_g5udd")
 
 [node name="KnifeShooter" parent="." instance=ExtResource("1_wnnne")]
 position = Vector2(360, 901)
