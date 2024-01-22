@@ -24,4 +24,4 @@ func add_knifes(amount: int):
 		
 func remove_knifes(amount: int):
 	for i in range(amount):
-		get_child(1).queue_free()
+		get_child(i).queue_free() 

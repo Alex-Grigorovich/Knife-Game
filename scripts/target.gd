@@ -24,9 +24,9 @@ var apple_scene : PackedScene = load("res://elements/apple.tscn")
 func _physics_process(delta):
 	rotation += speed * delta
 
-func _ready():
-	add_default_items(3, 2)
-	
+func take_damage():
+	if Globals.knifes == 0:
+		explode()
 	#await get_tree().create_timer(1).timeout
 	#explode()
 	
@@ -45,6 +45,8 @@ func explode():
 	tween.parallel().tween_property(knife_particle, "modulate", Color("ffffff00"), EXPLOSION_TIME)
 	
 	tween.play()
+	await tween.finished
+	Globals.change_stage(Globals.current_stage + 1)
 
 func add_object_with_pivot(object: Node2D, object_rotation :float):
 	var pivot := Node2D.new()
