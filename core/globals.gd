@@ -8,6 +8,7 @@ const location_to_scene = {
 
 var rng := RandomNumberGenerator.new()
 var points := 0
+var knifes := 6
 
 func _ready():
 	rng.randomize()
@@ -22,6 +23,9 @@ func reset_points():
 	points = 0
 	Events.points_changed.emit(points)
 	
+func remove_knife():
+	knifes -= 1
+	Events.knifes_changed.emit(knifes)
 
 func handle_location_change(location: Events.LOCATIONS):
 	get_tree().change_scene_to_packed(location_to_scene.get(location))

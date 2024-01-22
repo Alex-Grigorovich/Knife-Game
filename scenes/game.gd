@@ -6,6 +6,7 @@ var restart_overlay_scene = preload("res://elements/ui/restart_overlay/restart_o
 
 func _ready():
 	Events.game_over.connect(end_game)
+	Events.knifes_changed.emit(Globals.knifes)
 
 func end_game():
 	knife_shooter.is_enabled = false
