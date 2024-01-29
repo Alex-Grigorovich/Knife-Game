@@ -5,6 +5,10 @@ const location_to_scene = {
 	Events.LOCATIONS.START: preload("res://scenes/start screen/start_screen.tscn"),
 	Events.LOCATIONS.SHOP: preload("res://scenes/scene shop/knife_shop.tscn")
 }
+
+const SAVE_GAME_FILE := "user://savegame.save"
+const SAVE_VARIABLES := ["apples"]
+
 const MAX_STAGE_APPLES := 3
 const MAX_STAGE_KNIFES := 2
 const MIN_KNIFES := 5
@@ -14,12 +18,45 @@ var rng := RandomNumberGenerator.new()
 
 var current_stage := 1
 var points := 0
-var knifes := 6
+var knifes := 0
+var apples := 0
 
 func _ready():
+	load_game()
 	rng.randomize()
 	print_debug(rng.seed)
 	Events.location_changed.connect(handle_location_change)
+
+func save_game():
+	var save_game_file = FileAccess.open(SAVE_GAME_FILE, FileAccess.WRITE)
+	if save_game_file == null:
+		printerr("save failed with error code {0}".format([FileAccess.get_open_error()]))
+		return
+	var game_data := {}
+	for variable in SAVE_VARIABLES:
+		game_data[variable] = get(variable)
+	var json_object = JSON.new()
+	save_game_file.store_line(json_object.stringify(game_data))
+
+func load_game():
+	if not FileAccess.file_exists(SAVE_GAME_FILE):
+		return
+	var save_game_file = FileAccess.open(SAVE_GAME_FILE, FileAccess.READ)
+	if save_game_file == null:
+		printerr("save failed with error code {0}".format([FileAccess.get_open_error()]))
+		return
+	var json_object = JSON.new()
+	var error = json_object.parse(save_game_file.get_line())
+	if error != OK:
+		return
+	var game_data = json_object.get_data()
+	for variable in SAVE_VARIABLES:
+		if variable in game_data:
+			set(variable, game_data[variable])
+
+func add_apples(amount: int):
+	apples += amount
+	Events.apples_changed.emit(apples)
 
 func change_stage(stage_i: int):
 	current_stage = stage_i

@@ -14,8 +14,8 @@ var is_hited := false
 func _on_area_2d_body_entered(body):
 	if not is_hited:
 		is_hited = true
+		Globals.add_apples(1)
 		sprite.hide()
-		
 		var tween := create_tween()
 		for particle in particles:
 			particle.emitting = true
