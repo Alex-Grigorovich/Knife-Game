@@ -10,6 +10,11 @@ enum State {
 #var is_flying := false
 #var is_flying_away := false
 
+@onready var sprite := $Sprite2D
+
+func  _ready():
+	sprite.texture = Globals.KNIFES_TEXTURES[Globals.active_knife_index]
+
 var speed := 4500.0
 var state = State.IDLE
 var fly_away_direction = Vector2.DOWN

@@ -1,5 +1,17 @@
 extends Node
 
+const KNIFES_TEXTURES := [
+	preload("res://assets/knife1.png"),
+	preload("res://assets/knife2.png"),
+	preload("res://assets/knife3.png"),
+	preload("res://assets/knife4.png"),
+	preload("res://assets/knife5.png"),
+	preload("res://assets/knife6.png"),
+	preload("res://assets/knife7.png"),
+	preload("res://assets/knife8.png"),
+	preload("res://assets/knife9.png")
+]
+
 const location_to_scene = {
 	Events.LOCATIONS.GAME: preload("res://scenes/game.tscn"),
 	Events.LOCATIONS.START: preload("res://scenes/start screen/start_screen.tscn"),
@@ -7,12 +19,14 @@ const location_to_scene = {
 }
 
 const SAVE_GAME_FILE := "user://savegame.save"
-const SAVE_VARIABLES := ["apples"]
+const SAVE_VARIABLES := ["apples", "active_knife_index", "unlocked_knifes"]
 
 const MAX_STAGE_APPLES := 3
 const MAX_STAGE_KNIFES := 2
 const MIN_KNIFES := 5
 const MAX_KNIFES := 8
+
+const UNLOCK_COST := 250
 
 var rng := RandomNumberGenerator.new()
 
@@ -21,11 +35,25 @@ var points := 0
 var knifes := 0
 var apples := 0
 
+var active_knife_index := 0
+var unlocked_knifes := 0b000000001
+
 func _ready():
 	load_game()
 	rng.randomize()
+	seed(rng.seed)
 	print_debug(rng.seed)
 	Events.location_changed.connect(handle_location_change)
+
+func unlock_knife(knife_index: int):
+	unlocked_knifes |= (1 << knife_index)
+	
+func is_knife_unlocked(knife_index: int):
+	return unlocked_knifes & (1 << knife_index) != 0
+
+func change_knife(knife_index: int):
+	active_knife_index = knife_index
+	Events.active_knifes_changed.emit(active_knife_index)
 
 func save_game():
 	var save_game_file = FileAccess.open(SAVE_GAME_FILE, FileAccess.WRITE)

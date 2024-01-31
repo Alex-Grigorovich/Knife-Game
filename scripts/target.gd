@@ -21,6 +21,11 @@ const OBJECT_MARGIN = PI / 6
 var knife_scene : PackedScene = load("res://elements/knife.tscn") 
 var apple_scene : PackedScene = load("res://elements/apple.tscn") 
 
+
+
+func _ready():
+	knife_particle.texture = Globals.KNIFES_TEXTURES[Globals.active_knife_index]
+
 func _physics_process(delta):
 	rotation += speed * delta
 

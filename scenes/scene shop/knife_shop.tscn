@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfu55ubvgx8s4"]
+[gd_scene load_steps=7 format=3 uid="uid://dfu55ubvgx8s4"]
 
+[ext_resource type="Script" path="res://scenes/scene shop/knife_shop.gd" id="1_1ddcg"]
 [ext_resource type="StyleBox" uid="uid://ccptx0xmtwiqf" path="res://styles/green_line.stylebox" id="2_njmjp"]
 [ext_resource type="Theme" uid="uid://coddn0pcj11gc" path="res://styles/main.themes.tres" id="3_ketkq"]
 [ext_resource type="PackedScene" uid="uid://rjvcje2yfpbl" path="res://scenes/scene shop/shop_item/shop_item.tscn" id="4_3lnuv"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1ddcg")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -48,7 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = ExtResource("2_njmjp")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/VBoxContainer"]
+[node name="ActiveKnifeTexture" type="TextureRect" parent="MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 texture = ExtResource("4_215ph")
@@ -92,3 +94,5 @@ layout_mode = 2
 
 [node name="UnblockButton" parent="MarginContainer2/VBoxContainer" instance=ExtResource("5_kl36k")]
 layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/UnblockButton" to="." method="_on_unblock_button_pressed"]
