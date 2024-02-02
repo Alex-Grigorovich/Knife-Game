@@ -12,6 +12,11 @@ const KNIFES_TEXTURES := [
 	preload("res://assets/knife9.png")
 ]
 
+const TARGETS := [
+	preload("res://elements/Targets/target.tscn"),
+	preload("res://elements/target_accelerate/target_accelerate.tscn")
+]
+
 const location_to_scene = {
 	Events.LOCATIONS.GAME: preload("res://scenes/game.tscn"),
 	Events.LOCATIONS.START: preload("res://scenes/start screen/start_screen.tscn"),
@@ -88,13 +93,13 @@ func add_apples(amount: int):
 
 func change_stage(stage_i: int):
 	current_stage = stage_i
-	var stage = get_common_stage()
+	var stage = Stage.new() if current_stage == 1 else get_random_stage()
 	knifes = rng.randi_range(MIN_KNIFES, MAX_KNIFES)
 	Events.knifes_changed.emit(knifes)
 	Events.stage_changed.emit(stage)
 
-func get_common_stage() -> Stage:
-	var stage := Stage.new()
+func get_random_stage() -> Stage:
+	var stage := Stage.new(TARGETS.pick_random())
 	stage.apples = rng.randi_range(0, MAX_STAGE_APPLES)
 	stage.knifes = rng.randi_range(0, MAX_STAGE_KNIFES)
 	return stage

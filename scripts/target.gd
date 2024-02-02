@@ -26,7 +26,12 @@ var apple_scene : PackedScene = load("res://elements/apple.tscn")
 func _ready():
 	knife_particle.texture = Globals.KNIFES_TEXTURES[Globals.active_knife_index]
 
+
+
 func _physics_process(delta):
+	move(delta)
+	
+func move(delta: float):
 	rotation += speed * delta
 
 func take_damage():
