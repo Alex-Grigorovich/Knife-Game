@@ -31,6 +31,12 @@ const MAX_STAGE_KNIFES := 2
 const MIN_KNIFES := 5
 const MAX_KNIFES := 8
 
+const BOSSES := [
+	preload("res://elements/target_boss_cheese/target_boss_cheese.tscn")
+]
+
+const BOSS_LEVEL := 5
+
 const UNLOCK_COST := 250
 
 var rng := RandomNumberGenerator.new()
@@ -93,7 +99,12 @@ func add_apples(amount: int):
 
 func change_stage(stage_i: int):
 	current_stage = stage_i
-	var stage = Stage.new() if current_stage == 1 else get_random_stage()
+	var stage = Stage
+	if current_stage % BOSS_LEVEL == 0:
+		stage = Stage.new(BOSSES.pick_random())
+	else:
+		stage = Stage.new() if current_stage == 1 else get_random_stage()
+	
 	knifes = rng.randi_range(MIN_KNIFES, MAX_KNIFES)
 	Events.knifes_changed.emit(knifes)
 	Events.stage_changed.emit(stage)
