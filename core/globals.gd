@@ -53,7 +53,7 @@ func _ready():
 	load_game()
 	rng.randomize()
 	seed(rng.seed)
-	print_debug(rng.seed)
+	#print_debug(rng.seed)
 	Events.location_changed.connect(handle_location_change)
 
 func unlock_knife(knife_index: int):
