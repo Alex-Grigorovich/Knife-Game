@@ -53,6 +53,7 @@ func  handle_collison(collision: KinematicCollision2D):
 		collider.take_damage()
 		Globals.add_point()
 	else:
+		SfxPlayer.play_track(SfxPlayer.AUDIO_TRACKS.knifeHit)
 		throw_away(collision.get_normal())
 		Events.game_over.emit()
 		
